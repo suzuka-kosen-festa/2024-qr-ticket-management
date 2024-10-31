@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+        context: ./docker/php
+        dockerfile: Dockerfile
+    container_name: ticket-management
+    volumes:
+      - ./src:/var/www
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+    networks:
+      - laravel_network
+
+  webserver:
+    image: nginx:1.21.6-alpine
+    container_name: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
+    networks:
+      - laravel_network
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-ticket-management
+    environment:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - laravel_network
+
+  node:
+    image: node:16-alpine
+    container_name: tailwind_watch
+    working_dir: /var/www
+    volumes:
+      - ./src:/var/www
+    command: ["npm", "run", "watch"]
+    networks:
+      - laravel_network
+    restart: "no"
+
+networks:
+  laravel_network:
