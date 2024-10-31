@@ -2,6 +2,9 @@ FROM php:8.3-fpm
 
 # システムパッケージのインストール
 RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
     locales \
     zip \
     unzip \
@@ -19,12 +22,12 @@ RUN docker-php-ext-install -j$(nproc) \
     gd \
     pdo_mysql \
     mbstring \
+    zip \
     exif \
     bcmath \
     opcache \
     intl
 
-    
 # Composerのインストール
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
