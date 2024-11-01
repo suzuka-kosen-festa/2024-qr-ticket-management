@@ -11,7 +11,7 @@ class TicketService
     public static function getBalancedTicketList()
     {
         // $now = Carbon::now();
-        $now = Carbon::parse('2024-11-01 21:15:00');
+        $now = Carbon::parse('2024-11-01 21:00:00');
 
         $tickets = Ticket::where('balance', '>', 0)
             ->where('sale_start_time', '<=', $now)
@@ -36,7 +36,31 @@ class TicketService
         return $groupedTickets;
     }
 
-    public static function getTicket($user, $ticket_id)
+    public static function getAllTciketList()
+    {
+        $tickets = Ticket::orderBy('event_date')
+            ->orderBy('end_time')
+            ->select('id', 'event_date', 'title', 'max_count', 'balance', 'sale_start_time', 'end_time')
+            ->get();
+
+        $groupedTickets = $tickets->groupBy('event_date')->map(function ($tickets) {
+            return $tickets->map(function ($ticket) {
+                return [
+                    'id' => $ticket->id,
+                    'event_date' => $ticket->event_date,
+                    'title' => $ticket->title,
+                    'max_count' => $ticket->max_count,
+                    'balance' => $ticket->balance,
+                    'sale_start_time' => $ticket->sale_start_time,
+                    'end_time' => $ticket->end_time,
+                ];
+            });
+        });
+
+        return $groupedTickets;
+    }
+
+    public static function TryBuyTicket($user, $ticket_id)
     {
         DB::beginTransaction();
 

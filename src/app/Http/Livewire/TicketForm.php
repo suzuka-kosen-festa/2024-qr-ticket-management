@@ -31,7 +31,7 @@ class TicketForm extends Component
     {
         $this->validate();
 
-        $result = TicketService::getTicket($this->user, $this->ticket_id);
+        $result = TicketService::TryBuyTicket($this->user, $this->ticket_id);
 
         if ($result['status'] === 'error') {
             session()->flash('error', $result['message']);

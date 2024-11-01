@@ -1,4 +1,5 @@
-<div>
+<div  class="bg-gray-600 px-4 py-2 rounded-md text-white font-semibold">
+    QRをスキャンしてください
     <div id="loading" role="status" aria-live="polite">ブラウザのカメラの使用を許可してください。</div>
     @if (session()->has('message'))
         <div class="alert alert-success d-flex align-items-center" role="alert">
@@ -86,4 +87,5 @@
             });
         </script>
     @endpush
+</div>
 </div>

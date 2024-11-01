@@ -16,10 +16,18 @@
                         <p class="text-sm">入場の際には、以下のQRコードをご提示ください。画面のスクリーンショットをあらかじめ撮影しておくとスムーズにご案内できます。</p>
                     </div>
 
-                    <div class="flex justify-center my-4">
-                        {!! QrCode::size(250)->generate($ticket_log->unique_code) !!}
+                    <div class="my-6 flex justify-center items-center">
+                        @if(is_null($ticket_log->status))
+                            <div class="flex justify-center">
+                                {!! QrCode::size(250)->generate($ticket_log->unique_code) !!}
+                            </div>
+                        @else
+                            <span class="bg-white border border-gray-300 font-bold px-10 py-10 text-gray-600 text-xl">
+                            このチケットは使用されています
+                            </span>
+                        @endif
                     </div>
-                    
+
                     @include('common.conditions')
                 </section>
             </div>
