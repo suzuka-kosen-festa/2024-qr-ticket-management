@@ -4,20 +4,22 @@
             <div class="md:flex md:flex-row md:space-x-8 justify-center items-center">
                 <!-- Image section -->
                 <div class="flex justify-center mb-8 md:mb-0 md:w-1/2">
-                    <img src="/images/ghost-house.png" alt="Ghost House" class="w-full max-w-sm h-auto rounded-lg shadow-md">
+                    <img src="/images/ghost-house.png" alt="Ghost House"
+                        class="w-full max-w-sm h-auto rounded-lg shadow-md">
                 </div>
 
                 <!-- Text and Button section -->
                 <div class="md:w-1/2">
                     <h2 class="text-left mb-4 text-2xl font-semibold text-gray-700">
-                        鈴鹿高専 高専祭 お化け屋敷チケット
+                        鈴鹿高専 高専祭 お化け屋敷整理券
                     </h2>
 
-                    <p class="text-lg lg:text-xl font-light text-gray-600 dark:text-gray-300 mb-6 md:mb-10 max-w-3xl mx-auto">
+                    <p
+                        class="text-lg lg:text-xl font-light text-gray-600 mb-6 md:mb-10 max-w-3xl mx-auto">
                         王様から王冠を取り戻すように指示されたあなたは、館を目指して森の中を進んでいく。数々の試練を乗り越え、王冠を取り戻すことができるのか､､､
                     </p>
 
-                    <x-button.primary-link href="{{ route('ticket') }}" text="チケット"/>
+                    <x-button.primary-link href="{{ route('ticket') }}" text="整理券" />
                 </div>
             </div>
         </div>

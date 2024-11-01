@@ -16,12 +16,12 @@ class TicketScanner extends Component
         if ($ticketLog) {
             if ($ticketLog->status === null) {
                 $ticketLog->update(['status' => Carbon::now()]);
-                session()->flash('message', 'チケットが認証されました。');
+                session()->flash('success', '整理券が認証されました。');
             } else {
-                session()->flash('message', 'このチケットは既に使用されています。');
+                session()->flash('error', 'この整理券は既に使用されています。');
             }
         } else {
-            session()->flash('message', '無効なチケットです。');
+            session()->flash('error', '無効な整理券です。');
         }
     }
 

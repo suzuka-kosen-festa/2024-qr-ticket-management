@@ -18,7 +18,7 @@ class TicketService
             ->where('end_time', '>', $now)
             ->orderBy('event_date')
             ->orderBy('end_time')
-            ->select('id', 'event_date', 'title', 'max_count', 'balance')
+            ->select('id', 'event_date', 'title', 'balance')
             ->get();
 
         $groupedTickets = $tickets->groupBy('event_date')->map(function ($tickets) {
@@ -27,7 +27,6 @@ class TicketService
                     'id' => $ticket->id,
                     'event_date' => $ticket->event_date,
                     'title' => $ticket->title,
-                    'max_count' => $ticket->max_count,
                     'balance' => $ticket->balance,
                 ];
             });
@@ -40,7 +39,7 @@ class TicketService
     {
         $tickets = Ticket::orderBy('event_date')
             ->orderBy('end_time')
-            ->select('id', 'event_date', 'title', 'max_count', 'balance', 'sale_start_time', 'end_time')
+            ->select('id', 'event_date', 'title', 'balance', 'sale_start_time', 'end_time')
             ->get();
 
         $groupedTickets = $tickets->groupBy('event_date')->map(function ($tickets) {
@@ -49,7 +48,6 @@ class TicketService
                     'id' => $ticket->id,
                     'event_date' => $ticket->event_date,
                     'title' => $ticket->title,
-                    'max_count' => $ticket->max_count,
                     'balance' => $ticket->balance,
                     'sale_start_time' => $ticket->sale_start_time,
                     'end_time' => $ticket->end_time,

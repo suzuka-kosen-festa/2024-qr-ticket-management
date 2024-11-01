@@ -1,12 +1,23 @@
 <div  class="bg-gray-600 px-4 py-2 rounded-md text-white font-semibold">
     QRをスキャンしてください
     <div id="loading" role="status" aria-live="polite">ブラウザのカメラの使用を許可してください。</div>
-    @if (session()->has('message'))
-        <div class="alert alert-success d-flex align-items-center" role="alert">
-            <i class="fa-solid fa-circle-check mr-1"></i>
-            {{ session('message') }}
+
+    @if (session()->has('success'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition>
+            <x-flash-success>
+                {{ session('success') }}
+            </x-flash-success>
         </div>
     @endif
+
+    @if (session()->has('error'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition>
+            <x-flash-error>
+                {{ session('error') }}
+            </x-flash-error>
+        </div>
+    @endif
+
     <canvas id="canvas" class="qr-canvas" hidden></canvas>
 
     <style>

@@ -154,6 +154,6 @@ return [
     'attributes' => [
         'login_id' => 'ログインID',
         'password' => 'パスワード',
-        'ticket_id' => 'チケット',
+        'ticket_id' => '整理券',
     ],
 ];

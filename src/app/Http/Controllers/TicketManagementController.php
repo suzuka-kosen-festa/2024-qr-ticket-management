@@ -35,7 +35,6 @@ class TicketManagementController extends Controller
             'event_date' => 'required|date',
             'sale_start_time' => 'required',
             'end_time' => 'required|after_or_equal:sale_start_time',
-            'max_count' => 'required|integer|min:1',
             'balance' => 'required|integer|min:0',
         ]);
 
@@ -43,6 +42,6 @@ class TicketManagementController extends Controller
         $ticket->update($validatedData);
 
         return redirect()->route('admin.ticket.edit', ['id' => $ticket->id])
-        ->with('success', 'チケット情報が更新されました。');
+        ->with('success', '整理券情報が更新されました。');
     }
 }

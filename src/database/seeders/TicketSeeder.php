@@ -25,8 +25,7 @@ class TicketSeeder extends Seeder
                         'sale_start_time' => $data[2],
                         'end_time' => $data[3],
                         'title' => $data[4],
-                        'max_count' => $data[5],
-                        'balance' => $data[6],
+                        'balance' => $data[5],
                     ]);
                 }
                 $firstLine = false;
