@@ -10,8 +10,7 @@ class TicketService
 {
     public static function getBalancedTicketList()
     {
-        // $now = Carbon::now();
-        $now = Carbon::parse('2024-11-01 21:00:00');
+        $now = Carbon::now();
 
         $tickets = Ticket::where('balance', '>', 0)
             ->where('sale_start_time', '<=', $now)
