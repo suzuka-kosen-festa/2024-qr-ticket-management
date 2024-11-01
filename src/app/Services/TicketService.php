@@ -87,8 +87,6 @@ class TicketService
         } catch (\Exception $e) {
             DB::rollBack();
 
-            dd($e);
-
             return [
                 'status' => 'error',
                 'message' => 'Failed to submit ticket',
